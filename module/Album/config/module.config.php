@@ -25,6 +25,9 @@ return array(
         ),
     ),
     'view_manager' => array(
+        'template_map' => array(
+            'album/album/index'       => __DIR__ . '/../view/album/album/index.phtml',
+        ),
         'template_path_stack' => array(
             'album' => __DIR__ . '/../view',
         ),
