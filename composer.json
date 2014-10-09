@@ -9,6 +9,15 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.3.*"
+        "zendframework/zendframework": "2.3.*",
+        "zendframework/zftool": "dev-master",
+        "doctrine/doctrine-orm-module": "0.7.*",
+        "symfony/event-dispatcher": "v2.5.5",
+        "psr/log": "~1.0",
+        "symfony/yaml": "~2.5",
+        "doctrine/data-fixtures": "~1.0",
+        "doctrine/mongodb-odm": "1.0.0-BETA11",
+        "jmikola/geojson": "~1.0",
+        "zendframework/zend-developer-tools": "dev-master"
     }
 }
