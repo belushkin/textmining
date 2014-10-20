@@ -9,7 +9,6 @@ return array(
     'modules' => array(
         'Application',
         'Album',
-        'Suggestions',
         'ZendDeveloperTools',
         'DoctrineModule',
         'DoctrineORMModule'

@@ -107,11 +107,52 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
+
     // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(
-            ),
-        ),
+                'fetch-suggestions' => array(
+                    'type'    => 'simple',
+                    'options' => array(
+                        'route'    => 'fetch [--verbose|-v] suggestion <keyword>',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Suggestions',
+                            'action'     => 'fetch'
+                        )
+                    )
+                ),
+                'show-suggestions' => array(
+                    'type'    => 'simple',
+                    'options' => array(
+                        'route'    => 'show [--verbose|-v] suggestion [<id>]',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Suggestions',
+                            'action'     => 'show'
+                        )
+                    )
+                ),
+                'find-suggestions' => array(
+                    'type'    => 'simple',
+                    'options' => array(
+                        'route'    => 'find [--verbose|-v] suggestion [<keyword>]',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Suggestions',
+                            'action'     => 'find'
+                        )
+                    )
+                ),
+                'delete-suggestions' => array(
+                    'type'    => 'simple',
+                    'options' => array(
+                        'route'    => 'delete suggestion <id>',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Suggestions',
+                            'action'     => 'delete'
+                        )
+                    )
+                )
+            )
+        )
     ),
 );

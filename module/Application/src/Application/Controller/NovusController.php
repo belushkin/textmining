@@ -1,12 +1,12 @@
 <?php
 
-namespace Suggestions\Controller;
+namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Console\Request as ConsoleRequest;
 
-class SuggestionsController extends AbstractActionController
+class NovusController extends AbstractActionController
 {
 
     public function indexAction()
