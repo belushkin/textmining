@@ -4,26 +4,62 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
-/** @ORM\Entity */
-class User {
+/**
+ * User
+ *
+ * @ORM\Table(name="User")
+ * @ORM\Entity
+ */
+class User
+{
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
 
-    /** @ORM\Column(type="string") */
-    protected $fullName;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fullName", type="string", length=255, nullable=false)
+     */
+    private $fullname;
 
-    // getters/setters
-    public function setFullName($name)
-    {
-        $this->fullName = $name;
-    }
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set fullname
+     *
+     * @param string $fullname
+     * @return User
+     */
+    public function setFullname($fullname)
+    {
+        $this->fullname = $fullname;
+
+        return $this;
+    }
+
+    /**
+     * Get fullname
+     *
+     * @return string 
+     */
+    public function getFullname()
+    {
+        return $this->fullname;
     }
 }

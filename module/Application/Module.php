@@ -44,10 +44,14 @@ class Module implements ConfigProviderInterface, ConsoleUsageProviderInterface
     {
         return array(
             // Describe available commands
-            'fetch suggestion [--verbose|-v] KEYWORD'   => 'Fetch google suggestion by keyword and store it in DB',
-            'find suggestion [--verbose|-v] KEYWORD'    => 'Find stored google suggestions by keyword and show them',
-            'show suggestion [--verbose|-v] ID'         => 'Show stored google suggestion by id and show it',
-            'delete suggestion [--verbose|-v] ID'       => 'Delete stored google suggestion by id',
+            // Suggestions part
+            'fetch [--verbose|-v] suggestion KEYWORD'   => 'Fetch google suggestion by keyword and store it in DB',
+            'find [--verbose|-v] suggestion KEYWORD'    => 'Find stored google suggestions by keyword and show them',
+            'show [--verbose|-v] suggestion ID'         => 'Show stored google suggestion by id and show it',
+            'delete [--verbose|-v] suggestion ID'       => 'Delete stored google suggestion by id',
+
+            // Novus part
+            'fetch [--verbose|-v] novus'   => 'Fetch novus bakery information and store it in DB',
 
             // Describe expected parameters
             array( 'KEYWORD',       'Keyword for looking suggestions in Google' ),

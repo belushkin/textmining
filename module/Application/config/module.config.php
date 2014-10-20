@@ -73,7 +73,9 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Suggestions' => 'Application\Controller\SuggestionsController',
+            'Application\Controller\Novus' => 'Application\Controller\NovusController'
         ),
     ),
     'doctrine' => array(
@@ -112,6 +114,8 @@ return array(
     'console' => array(
         'router' => array(
             'routes' => array(
+
+                // Suggestions part
                 'fetch-suggestions' => array(
                     'type'    => 'simple',
                     'options' => array(
@@ -145,10 +149,22 @@ return array(
                 'delete-suggestions' => array(
                     'type'    => 'simple',
                     'options' => array(
-                        'route'    => 'delete suggestion <id>',
+                        'route'    => 'delete [--verbose|-v] suggestion <id>',
                         'defaults' => array(
                             'controller' => 'Application\Controller\Suggestions',
                             'action'     => 'delete'
+                        )
+                    )
+                ),
+
+                // Novus part
+                'fetch-novus' => array(
+                    'type'    => 'simple',
+                    'options' => array(
+                        'route'    => 'fetch [--verbose|-v] novus',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Novus',
+                            'action'     => 'fetch'
                         )
                     )
                 )

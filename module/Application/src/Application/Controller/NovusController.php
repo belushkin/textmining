@@ -22,6 +22,7 @@ class NovusController extends AbstractActionController
             throw new \RuntimeException('You can only use this action from a console!');
         }
 
+
         print_r($request->getParams());
         return "!";
     }
