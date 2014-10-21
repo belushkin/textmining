@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 library(XML)
 library(scrapeR)
 library(stringr)
@@ -32,7 +34,7 @@ number_of_pages = getNumberOfPages('https://novus.zakaz.ua/ru/bakery/')
 today <- format(Sys.Date(), format="%Y%m%d")
 for (i in 1:number_of_pages) {
   df = getPageDataFrame(paste("https://novus.zakaz.ua/ru/bakery/?&page=", i,sep=""))
-  write.table(df, file = paste("data/cache//novus.", i, ".csv", sep=""), sep=',', col.names = FALSE)
+  write.table(df, file = paste(getwd(),"/data/cache/",today,"/novus.", i, ".csv", sep=""), sep=',', col.names = FALSE)
 }
 
 

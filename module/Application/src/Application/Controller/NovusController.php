@@ -23,12 +23,29 @@ class NovusController extends AbstractActionController
             throw new \RuntimeException('You can only use this action from a console!');
         }
 
+        // Create directory for importing data from Novus
         $path = __DIR__ . '/../../../../../data/cache/' . date("Ymd");
         $directory = new Directory($path);
         if (!$directory->exists()) {
             $directory->create();
         }
-        echo exec(__DIR__ . '/../../../../../data/r/test.r');
+
+        // Execute external programs for getting data
+        //exec(__DIR__ . '/../../../../../data/r/novus.r');
+        if (file_exists("$path/novus.csv")) {
+            unlink("$path/novus.csv");
+        }
+        exec("cat $path/*.csv > $path/novus.csv");
+
+        // Read combined csv file and put line by line to the database
+        $file = new \SplFileObject($path . "/novus.csv");
+        $file->setFlags(\SplFileObject::READ_CSV);
+        foreach ($file as $row) {
+            if (count($row) < 4) {
+                continue;
+            }
+            list($id, $name, $hryvni, $kopiyki) = $row;
+        }
 
 //        $objectManager = $this
 //            ->getServiceLocator()
