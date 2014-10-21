@@ -25,7 +25,10 @@ class NovusController extends AbstractActionController
 
         $path = __DIR__ . '/../../../../../data/cache/' . date("Ymd");
         $directory = new Directory($path);
-        $directory->create();
+        if (!$directory->exists()) {
+            $directory->create();
+        }
+        echo exec(__DIR__ . '/../../../../../data/r/test.r');
 
 //        $objectManager = $this
 //            ->getServiceLocator()

@@ -39,4 +39,13 @@ class Directory
         return $this->path;
     }
 
+    public function exists()
+    {
+        if (is_dir($this->path)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

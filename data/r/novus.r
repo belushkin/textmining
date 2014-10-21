@@ -29,9 +29,10 @@ getPageDataFrame <- function(urlParameter) {
 }
 
 number_of_pages = getNumberOfPages('https://novus.zakaz.ua/ru/bakery/')
+today <- format(Sys.Date(), format="%Y%m%d")
 for (i in 1:number_of_pages) {
-  df = getPageDataFrame(paste("https://novus.zakaz.ua/ru/bakery/?&page=",i,sep=""))
-  write.table(df, file = paste("/home/belushkin/sandbox/textmining/data/r/novus.", i, ".csv", sep=""), sep=',', col.names = FALSE)
+  df = getPageDataFrame(paste("https://novus.zakaz.ua/ru/bakery/?&page=", i,sep=""))
+  write.table(df, file = paste("data/cache//novus.", i, ".csv", sep=""), sep=',', col.names = FALSE)
 }
 
 
