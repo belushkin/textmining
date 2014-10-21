@@ -37,6 +37,14 @@ class NovusController extends AbstractActionController
         }
         exec("cat $path/*.csv > $path/novus.csv");
 
+        // Get ObjectManager for saving imported bread items
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        // Get Novus Shop Object
+        $shop = $objectManager->find('\Application\Entity\BreadShop', 1);
+
         // Read combined csv file and put line by line to the database
         $file = new \SplFileObject($path . "/novus.csv");
         $file->setFlags(\SplFileObject::READ_CSV);
@@ -45,18 +53,15 @@ class NovusController extends AbstractActionController
                 continue;
             }
             list($id, $name, $hryvni, $kopiyki) = $row;
-        }
 
-//        $objectManager = $this
-//            ->getServiceLocator()
-//            ->get('Doctrine\ORM\EntityManager');
-//
-//        $bread = new \Application\Entity\Bread();
-//        $bread->setName('Marco Pivetta');
-//        $bread->setDate(new \DateTime("now"));
-//        $bread->setPrice(2.3);
-//        $objectManager->persist($bread);
-//        $objectManager->flush();
+            $bread = new \Application\Entity\BreadStatistics();
+            $bread->setName(iconv('', 'UTF-8', $name));
+            $bread->setDate(new \DateTime("now"));
+            $bread->setPrice(floatval("$hryvni.$kopiyki"));
+            $bread->setBreadShop($shop);
+            $objectManager->persist($bread);
+            $objectManager->flush();
+        }
 
         return "!";
     }
