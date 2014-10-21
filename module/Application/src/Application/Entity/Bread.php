@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Bread
  *
- * @ORM\Table(name="bread", indexes={@ORM\Index(name="bread_category_id", columns={"bread_category_id"})})
+ * @ORM\Table(name="bread", indexes={@ORM\Index(name="bread_category_id", columns={"bread_category_id"}), @ORM\Index(name="bread_country_id", columns={"bread_country_id"}), @ORM\Index(name="bread_trade_mark_id", columns={"bread_trade_mark_id"})})
  * @ORM\Entity
  */
 class Bread
@@ -29,11 +29,11 @@ class Bread
     private $name;
 
     /**
-     * @var float
+     * @var integer
      *
-     * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="weight", type="smallint", nullable=false)
      */
-    private $price;
+    private $weight;
 
     /**
      * @var \DateTime
@@ -51,6 +51,26 @@ class Bread
      * })
      */
     private $breadCategory;
+
+    /**
+     * @var \Application\Entity\BreadCountry
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\BreadCountry")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="bread_country_id", referencedColumnName="id")
+     * })
+     */
+    private $breadCountry;
+
+    /**
+     * @var \Application\Entity\BreadTradeMark
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Entity\BreadTradeMark")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="bread_trade_mark_id", referencedColumnName="id")
+     * })
+     */
+    private $breadTradeMark;
 
 
 
@@ -88,26 +108,26 @@ class Bread
     }
 
     /**
-     * Set price
+     * Set weight
      *
-     * @param float $price
+     * @param integer $weight
      * @return Bread
      */
-    public function setPrice($price)
+    public function setWeight($weight)
     {
-        $this->price = $price;
+        $this->weight = $weight;
 
         return $this;
     }
 
     /**
-     * Get price
+     * Get weight
      *
-     * @return float 
+     * @return integer 
      */
-    public function getPrice()
+    public function getWeight()
     {
-        return $this->price;
+        return $this->weight;
     }
 
     /**
@@ -154,5 +174,51 @@ class Bread
     public function getBreadCategory()
     {
         return $this->breadCategory;
+    }
+
+    /**
+     * Set breadCountry
+     *
+     * @param \Application\Entity\BreadCountry $breadCountry
+     * @return Bread
+     */
+    public function setBreadCountry(\Application\Entity\BreadCountry $breadCountry = null)
+    {
+        $this->breadCountry = $breadCountry;
+
+        return $this;
+    }
+
+    /**
+     * Get breadCountry
+     *
+     * @return \Application\Entity\BreadCountry 
+     */
+    public function getBreadCountry()
+    {
+        return $this->breadCountry;
+    }
+
+    /**
+     * Set breadTradeMark
+     *
+     * @param \Application\Entity\BreadTradeMark $breadTradeMark
+     * @return Bread
+     */
+    public function setBreadTradeMark(\Application\Entity\BreadTradeMark $breadTradeMark = null)
+    {
+        $this->breadTradeMark = $breadTradeMark;
+
+        return $this;
+    }
+
+    /**
+     * Get breadTradeMark
+     *
+     * @return \Application\Entity\BreadTradeMark 
+     */
+    public function getBreadTradeMark()
+    {
+        return $this->breadTradeMark;
     }
 }

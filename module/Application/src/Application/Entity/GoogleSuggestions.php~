@@ -1,0 +1,46 @@
+<?php
+
+namespace Application\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * GoogleSuggestions
+ *
+ * @ORM\Table(name="google_suggestions")
+ * @ORM\Entity
+ */
+class GoogleSuggestions
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="keyword", type="string", length=20, nullable=false)
+     */
+    private $keyword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="suggestions", type="string", length=100, nullable=false)
+     */
+    private $suggestions;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=false)
+     */
+    private $date = 'CURRENT_TIMESTAMP';
+
+
+}
